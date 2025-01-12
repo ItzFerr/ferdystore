@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+    <title>Ferdy Arya Putra - Portfolio</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap');
+
+        :root {
+            --primary-color: #1a73e8;
+            --secondary-color: #ffffff;
+            --background-color: #f5f5f5;
+            --text-color: #333333;
+            --footer-bg: #ffffff;
+            --name-color: #000000;
+            --footer-text: #000000;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', Arial, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+        header {
+            position: sticky;
+            top: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: rgb(255, 255, 255); /* Warna latar belakang putih */
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Transisi latar belakang dan shadow */
+        }
+
+        header.transparent {
+            background-color: rgba(255, 255, 255, 0.695); /* Latar belakang transparan */
+        }
+
+        header.shadow {
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow saat scroll */
+        }
+
+        header .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        header nav a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: bold;
+        }
+
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            padding: 20px;
+            background: linear-gradient(to bottom, var(--secondary-color), var(--background-color));
+        }
+
+        .hero .text {
+            max-width: 500px;
+            text-align: left;
+            margin-left: 40px;
+            margin-top: -170px; /* Adjusted to move up */
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            line-height: 1.2;
+        }
+
+        .hero .intro {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            margin-bottom: -50px;
+            margin-top: -10px; /* Reduced space between "Hello! I am" and name */
+        }
+
+        .hero .intro-text {
+            margin-bottom: 10px;
+            margin-top: -40px;
+            font-size: 1rem; /* Ukuran font lebih kecil dari ukuran default */
+            line-height: 1.5; /* Sesuaikan tinggi garis untuk kenyamanan membaca */
+        }
+
+        .hero .dev-roles {
+            color: #005bb5; /* Warna kuning */
+            font-size: 1.2rem; /* Sesuaikan ukuran font */
+            text-shadow: 0 2px 15px rgb(0, 91, 181); /* Efek shadow warna kuning dengan sedikit transparansi */
+        }
+
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--name-color); /* Changed to black */
+        }
+
+        .hero .photo {
+            flex: 1;
+            margin-right: 20px;
+        }
+
+        .variasi {
+            -webkit-text-fill-color: transparent;
+            -webkit-text-stroke: 1px #000;
+        }
+
+        .section {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .carousel {
+            position: relative;
+            text-align: center;
+        }
+
+        .carousel img {
+            max-width: 80%;
+            height: auto;
+            display: none;
+            margin: 0 auto;
+            border-radius: 15px;
+        }
+
+        .carousel img.active {
+            display: block;
+        }
+
+        .carousel .controls {
+            margin-top: 20px;
+        }
+
+        .carousel button {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        .carousel .controls button {
+            background-color: #005bb5; /* Warna biru yang lebih menarik */
+            border: 2px solid #005bb5;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 10px 20px;
+            border-radius: 50%;
+            transition: all 0.3s ease; /* Animasi halus saat hover */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow untuk efek 3D */
+        }
+
+        .carousel .controls button:hover {
+            background-color: #004494; /* Biru lebih gelap saat hover */
+            transform: translateY(-4px); /* Efek tombol terangkat saat hover */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Shadow lebih kuat saat hover */
+        }
+
+        .contact-form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        /* Kolom input dengan efek blur */
+        .contact-form input,
+        .contact-form textarea,
+        .contact-form button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.5); /* Latar belakang sedikit transparan */
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-sizing: border-box;
+            backdrop-filter: blur(10px); /* Efek blur pada latar belakang */
+            color: #333;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        /* Kolom input fokus */
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            background-color: rgba(255, 255, 255, 0.8); /* Fokus menjadi lebih terang */
+        }
+
+        /* Tombol Send dengan desain lebih menarik */
+        .contact-form button {
+            background-color: var(--primary-color); /* Warna utama tombol */
+            color: #fff;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        /* Efek hover pada tombol */
+        .contact-form button:hover {
+            background-color: #005bb5; /* Ganti warna saat hover */
+            transform: translateY(-3px); /* Efek sedikit naik */
+        }
+
+        /* Efek aktif pada tombol */
+        .contact-form button:active {
+            transform: translateY(0); /* Efek kembali ke posisi semula */
+        }
+
+        /* Styling untuk input yang lebih baik */
+        .contact-form input,
+        .contact-form textarea {
+            font-family: 'Poppins', Arial, sans-serif;
+        }
+
+        /* Desain untuk textarea */
+        .contact-form textarea {
+            resize: none;
+            height: 200px;
+        }
+
+        /* Penataan untuk layout dan margin */
+        .contact-form {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.2); /* Memberikan latar belakang transparan pada form */
+            border-radius: 10px;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); /* Bayangan halus */
+        }
+
+        footer {
+            background: var(--footer-bg);
+            color: var(--footer-text);
+            text-align: center;
+            padding: 20px;
+        }
+
+        footer a {
+            color: var(--footer-text);
+            margin: 0 10px;
+        }
+
+        footer a img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .about-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .about-item {
+            width: 30%;
+            margin: 0 20px;
+        }
+
+        /* Responsif untuk ukuran layar lebih kecil (mobile) */
+        @media screen and (max-width: 768px) {
+            body {
+                padding: 0 10px;
+            }
+
+            header {
+                padding: 10px 15px; /* Mengurangi padding untuk header */
+            }
+
+            header .logo {
+                font-size: 1.2rem; /* Ukuran font logo lebih kecil */
+            }
+
+            header nav a {
+                font-size: 0.9rem; /* Ukuran font link navigasi lebih kecil */
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                min-height: auto;
+            }
+
+            .hero .text {
+                margin-left: 0;
+                margin-top: 20px;
+                padding: 10px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;  /* Ukuran font lebih kecil untuk ponsel */
+                text-align: center;
+            }
+
+            .hero .intro-text {
+                font-size: 0.9rem;
+            }
+
+            .hero .dev-roles {
+                font-size: 1rem;
+            }
+
+            .carousel img {
+                max-width: 100%;
+                height: auto;
+            }
+
+            .carousel .controls button {
+                font-size: 1.5rem;  /* Menyesuaikan ukuran tombol */
+                padding: 8px 15px;
+            }
+
+            .contact-form {
+                width: 100%;
+                padding: 15px;
+            }
+
+            .contact-form input,
+            .contact-form textarea,
+            .contact-form button {
+                font-size: 1rem;
+            }
+
+            footer {
+                padding: 10px;
+            }
+
+            .about-section {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .about-item {
+                width: 80%;
+                margin: 10px 0;
+            }
+        }
+
+        /* Responsif untuk ukuran layar sangat kecil (misalnya, smartphone kecil) */
+        @media screen and (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;  /* Ukuran font lebih kecil */
+            }
+
+            .hero .intro {
+                font-size: 1rem;
+                margin-bottom: 10px;
+            }
+
+            .carousel .controls button {
+                font-size: 1.2rem;
+                padding: 8px 12px;
+            }
+
+            .contact-form input,
+            .contact-form textarea {
+                font-size: 0.9rem;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <header id="header">
+        <div class="logo">Ferdy Store</div>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#projects">Project</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="photo">
+            <!-- Replace with your image -->
+            <img src="img/me.png" alt="Your Photo" />
+        </div>
+        <div class="text">
+            <p class="intro">Hello 🖐 my name is ...</p>
+            <h1>Fe<span class="variasi">r</span>dy<br>Arya<br>Putra</h1>
+            <p class="intro-text">I'm an 18 years old programmer, majoring in Computer and Network Engineering at SMK Tunas Etam.</p>
+            <p class="dev-roles">Bot Developer | Web Developer | Network Engineer</p>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <h2>About</h2>
+        <div class="about-section">
+            <div class="about-item">
+                <h3>Bot Developer</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+            <div class="about-item">
+                <h3>Web Developer</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+            <div class="about-item">
+                <h3>Network Engineer</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section">
+        <h2>Projects</h2>
+        <div class="carousel">
+            <img src="img/network.png" alt="Project 1" class="active" />
+            <img src="img/bot.png" alt="Project 2" />
+            <div class="controls">
+                <button onclick="prevSlide()">⤌</button>
+                <button onclick="nextSlide()">⤍</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <h2>Contact</h2>
+        <form class="contact-form">
+            <input type="text" name="name" placeholder="Your Name" required />
+            <input type="email" name="email" placeholder="Your Email" required />
+            <textarea name="message" placeholder="Your Message" required></textarea>
+            <button type="submit">Send</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>Created with 🤍 Ferdy Arya Putra</p>
+        <a href="https://github.com/ItzFerr" target="_blank"><img src="img/github.png" alt="GitHub" /></a>
+        <a href="https://instagram.com/ferdiii.sr" target="_blank"><img src="img/ig.png" alt="Instagram" /></a>
+        <a href="https://discord.com/" target="_blank"><img src="img/discord.png" alt="Discord" /></a>
+        <a href="https://tiktok.com/" target="_blank"><img src="img/tiktok.png" alt="TikTok" /></a>
+    </footer>
+
+    <script>
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) { // Jika scroll lebih dari 50px
+                header.classList.add('shadow');  // Tambahkan shadow
+                header.classList.add('transparent');  // Ubah latar belakang menjadi transparan
+            } else {
+                header.classList.remove('shadow'); // Hapus shadow
+                header.classList.remove('transparent'); // Kembalikan latar belakang menjadi putih penuh
+            }
+        });
+
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel img');
+
+        function showSlide(index) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (index + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+    </script>
+</body>
+</html>
