@@ -416,11 +416,41 @@
             margin: 0 10px;
         }
 
-        footer a img {
-            width: 20px;
-            height: 20px;
-            filter: invert(1);
+        footer a .iconify {
+            width: 24px;
+            height: 24px;
+            color: #ffffff;
             opacity: 0.82;
+            transition: color 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        footer a:hover .iconify {
+            color: var(--primary-color);
+            opacity: 1;
+            transform: translateY(-3px);
+        }
+
+        .toast {
+            position: fixed;
+            right: 24px;
+            bottom: 24px;
+            z-index: 2000;
+            padding: 14px 18px;
+            border: 1px solid rgba(0, 245, 160, 0.32);
+            border-radius: 14px;
+            background: rgba(8, 13, 25, 0.95);
+            color: #ffffff;
+            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+            opacity: 0;
+            transform: translateY(18px);
+            pointer-events: none;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            font-family: 'Fira Code', monospace;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .about-section {
@@ -631,6 +661,13 @@
             .contact-form button {
                 font-size: 0.9rem;
             }
+
+            .toast {
+                left: 16px;
+                right: 16px;
+                bottom: 16px;
+                text-align: center;
+            }
         }
 
     </style>
@@ -671,7 +708,7 @@
                     <div><span class="prompt">$</span> <span class="command">whoami</span></div>
                     <div><span class="string">Ferdy Arya Putra</span></div>
                     <div><span class="prompt">$</span> <span class="command">cat skills.json</span></div>
-                    <div>{ "stack": ["Laravel", "Bot", "Network"] }</div>
+                    <div>{ stack: ["Programming", "Networking"] }</div>
                     <div><span class="prompt">$</span> <span class="command">deploy --project portfolio</span></div>
                     <div><span class="string">status: online</span></div>
                 </div>
@@ -719,7 +756,7 @@
 
     <section id="contact" class="section">
         <h2>Contact</h2>
-        <form class="contact-form">
+        <form class="contact-form" id="contact-form">
             <input type="text" name="name" placeholder="Your Name" required />
             <input type="email" name="email" placeholder="Your Email" required />
             <textarea name="message" placeholder="Your Message" required></textarea>
@@ -729,16 +766,21 @@
 
     <footer>
         <p>Created with 🤍 Ferdy Arya Putra</p>
-        <a href="https://github.com/ItzFerr" target="_blank"><img src="img/github.png" alt="GitHub" /></a>
-        <a href="https://instagram.com/ferdiii.sr" target="_blank"><img src="img/ig.png" alt="Instagram" /></a>
-        <a href="https://discord.com/" target="_blank"><img src="img/discord.png" alt="Discord" /></a>
-        <a href="https://tiktok.com/" target="_blank"><img src="img/tiktok.png" alt="TikTok" /></a>
+        <a href="https://github.com/ItzFerr" target="_blank" aria-label="GitHub"><span class="iconify" data-icon="tabler:brand-github"></span></a>
+        <a href="https://www.linkedin.com/in/ferdy-arya-putra-96aab4293" target="_blank" aria-label="LinkedIn"><span class="iconify" data-icon="tabler:brand-linkedin"></span></a>
+        <a href="https://instagram.com/ferdiii.sr" target="_blank" aria-label="Instagram"><span class="iconify" data-icon="tabler:brand-instagram"></span></a>
+        <a href="https://discord.com/" target="_blank" aria-label="Discord"><span class="iconify" data-icon="tabler:brand-discord"></span></a>
+        <a href="https://tiktok.com/" target="_blank" aria-label="TikTok"><span class="iconify" data-icon="tabler:brand-tiktok"></span></a>
     </footer>
+
+    <div class="toast" id="toast">Pesan Dikirim (Demo)</div>
 
     <script>
         const header = document.getElementById('header');
         const menuToggle = document.getElementById('menu-toggle');
         const nav = document.querySelector('header nav');
+        const contactForm = document.getElementById('contact-form');
+        const toast = document.getElementById('toast');
 
         menuToggle.addEventListener('click', () => {
             menuToggle.classList.toggle('active');
@@ -750,6 +792,16 @@
                 menuToggle.classList.remove('active');
                 nav.classList.remove('active');
             });
+        });
+
+        contactForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            toast.classList.add('show');
+            contactForm.reset();
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2400);
         });
 
         window.addEventListener('scroll', () => {
